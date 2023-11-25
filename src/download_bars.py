@@ -141,6 +141,8 @@ class DownloadApp(EClient, ibapi.wrapper.EWrapper):
                 # if a file exists, let's attempt to load it, merge our data in, and then save it
                 if os.path.exists(path):
                     existing_bars = pd.read_csv(path, parse_dates=["date"])
+                    # @rhuang 11/12/2023 added to handle "TypeError: Cannot compare tz-naive and tz-aware timestamps"
+                    existing_bars = existing_bars["date"].dt.tz_localize('UTC')
                     combined = pd.concat([existing_bars, new_bars])
                     new_bars = combined.groupby("date").last().reset_index()
 

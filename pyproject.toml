@@ -18,8 +18,7 @@ keywords = ["interactive", "brokers", "finance"]
 dependencies = [
     "pandas",
     "numpy",
-    "python-dateutil",
-    "ibapi"
+    "python-dateutil"
 ]
 requires-python = ">=3.8"
 
